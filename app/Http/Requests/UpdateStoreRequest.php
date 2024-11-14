@@ -24,7 +24,7 @@ class UpdateStoreRequest extends FormRequest
         return [
             'name' => 'nullable|string|max:255',
             'email' => 'nullable|email|max:255',
-            'phones' => 'nullable|string',
+            'phones' => ['nullable', 'string', 'regex:/^(05|06|07)[0-9]{8}$/'],
             'company_name' => 'nullable|string|max:255',
             'capital' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:255',

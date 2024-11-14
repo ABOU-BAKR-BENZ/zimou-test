@@ -24,7 +24,7 @@ class CreateStoreRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'phones' => 'required|string',
+            'phones' => ['required', 'string', 'regex:/^(05|06|07)[0-9]{8}$/'],
             'company_name' => 'nullable|string|max:255',
             'capital' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:255',
