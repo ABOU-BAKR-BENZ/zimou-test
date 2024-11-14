@@ -12,6 +12,14 @@
         </div>
     </x-slot>
 
+    @if (session()->has('message'))
+        <div class="alert alert-info fw-bold text-center fs-3" role="alert">
+            <h3 class="bg-blue-500 text-white font-bold text-2xl">
+                {{ session()->get('message') }}
+            </h3>
+        </div>
+    @endif
+
     <div class="py-12">
         <div class="max-w-full mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -67,11 +75,27 @@
                                         <th class="px-1 py-4 text-center font-semibold">
                                             {{ $package->deliveryType->name }}
                                         </th>
-                                        <th class="px-1 py-4 text-center font-semibold">
-                                            {{ $package->packageStatus->name }}
+                                        @php
+                                            $status = $package->packageStatus->name;
+                                            $statusClasses = match ($status) {
+                                                'pending' => 'bg-gray-200 text-gray-700',
+                                                'in transit' => 'bg-blue-200 text-blue-800',
+                                                'arrived at destination' => 'bg-green-200 text-green-700',
+                                                'out for delivery' => 'bg-yellow-200 text-yellow-700',
+                                                'delivered' => 'bg-green-500 text-white',
+                                                'return to sender' => 'bg-red-200 text-red-700',
+                                                'exception' => 'bg-red-500 text-white',
+                                                'delayed' => 'bg-orange-200 text-orange-700',
+                                                'lost' => 'bg-gray-500 text-white',
+                                                default => 'bg-gray-100 text-gray-800',
+                                            };
+                                        @endphp
+
+                                        <th class="px-1 py-4 text-center font-semibold {{ $statusClasses }}">
+                                            {{ $status }}
                                         </th>
-                                        <td class="px-1 py-4 text-sm">
-                                            <a class="text-white py-3 px-3 bg-blue-700 rounded hover:bg-blue-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                                        <td class="px-1 py-4 text-sm flex justify-center">
+                                            <a class="text-white py-3 px-3 bg-blue-700 rounded hover:bg-white hover:text-blue-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-300"
                                                 href="{{ route('packages.edit', $package) }}">
                                                 Edit
                                             </a>

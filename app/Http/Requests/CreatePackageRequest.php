@@ -30,11 +30,11 @@ class CreatePackageRequest extends FormRequest
             'name' => 'required|string|max:100',
             'client_first_name' => 'required|string|max:100',
             'client_last_name' => 'required|string|max:100',
-            'client_phone' => 'required|string|min:10|max:15',
-            'client_phone2' => 'nullable|string|min:10|max:15',
-            'cod_to_pay' => 'required|numeric|min:0|max:1000',
+            'client_phone' => 'required|string',
+            'client_phone2' => 'nullable|string',
+            'cod_to_pay' => 'required|numeric|min:0|max:160000',
             'free_delivery' => 'required|boolean',
-            'weight' => 'required|integer|min:1000|max:5000',
+            'weight' => 'required|integer|min:50|max:5000',
         ];
     }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('commune_id')->index();
             $table->foreignId('delivery_type_id')->constrained();
             $table->foreignId('status_id')->constrained('package_statuses');
-            $table->foreignId('store_id')->constrained();
+            $table->foreignId('store_id')->constrained()->onDelete('cascade');
             $table->string('address');
             $table->boolean('can_be_opened')->default(true);
             $table->string('name')->nullable();

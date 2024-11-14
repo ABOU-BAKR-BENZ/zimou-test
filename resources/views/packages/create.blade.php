@@ -72,7 +72,7 @@
                             <div class="mb-4">
                                 <label for="delivery_type_id" class="block font-bold text-xl text-white">Delivery
                                     Type</label>
-                                <select id="delivery_type" name="delivery_type"
+                                <select id="delivery_type_id" name="delivery_type_id"
                                     class="mt-1 block w-full p-2 border rounded-md text-white bg-gray-900" required>
                                     <option value="">Select delivery type</option>
                                     @foreach ($deliveryTypes as $type)
@@ -86,92 +86,41 @@
                             </div>
 
                             <!-- Address -->
-                            <div class="mb-4">
-                                <label for="address" class="block font-bold text-xl text-white">Address</label>
-                                <input type="text" id="address" name="address" value="{{ old('address') }}"
-                                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-gray-900"
-                                    placeholder="Enter delivery address" required>
-                                @error('address')
-                                    <span class="text-red-600 text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
+                            <x-form-input label="Address" name="address" type="text"
+                                placeholder="Enter delivery address" :value="old('address')" error="address" />
 
-                            <!-- Name -->
-                            <div class="mb-4">
-                                <label for="name" class="block font-bold text-xl text-white">Package
-                                    Name</label>
-                                <input type="text" id="name" name="name" value="{{ old('name') }}"
-                                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-gray-900"
-                                    placeholder="Enter package name" required>
-                                @error('name')
-                                    <span class="text-red-600 text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
+                            {{-- Name --}}
+                            <x-form-input label="Package Name" name="name" type="text"
+                                placeholder="Enter package name" :value="old('name')" error="name" />
 
                             <!-- Client First Name -->
-                            <div class="mb-4">
-                                <label for="client_first_name" class="block font-bold text-xl text-white">Client
-                                    First Name</label>
-                                <input type="text" id="client_first_name" name="client_first_name"
-                                    placeholder="Enter client first name" value="{{ old('client_first_name') }}"
-                                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-gray-900"
-                                    required>
-                                @error('client_first_name')
-                                    <span class="text-red-600 text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
+                            <x-form-input label="Client
+                                    First Name"
+                                name="client_first_name" type="text" placeholder="Enter client first name"
+                                :value="old('client_first_name')" error="client_first_name" />
 
                             <!-- Client Last Name -->
-                            <div class="mb-4">
-                                <label for="client_last_name" class="block font-bold text-xl text-white">Client
-                                    Last Name</label>
-                                <input type="text" id="client_last_name" name="client_last_name"
-                                    value="{{ old('client_last_name') }}"
-                                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-gray-900"
-                                    placeholder="Enter last name" required>
-                                @error('client_last_name')
-                                    <span class="text-red-600 text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
+                            <x-form-input label="Client
+                                    Last Name"
+                                name="client_last_name" type="text" placeholder="Enter client last name"
+                                :value="old('client_last_name')" error="client_last_name" />
 
                             <!-- Client Phone -->
-                            <div class="mb-4">
-                                <label for="client_phone" class="block font-bold text-xl text-white">Client
-                                    Phone</label>
-                                <input type="text" id="client_phone" name="client_phone"
-                                    value="{{ old('client_phone') }}"
-                                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-gray-900"
-                                    placeholder="Enter phone number" required>
-                                @error('client_phone')
-                                    <span class="text-red-600 text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
+                            <x-form-input label="Client
+                                    Phone 1" name="client_phone"
+                                type="text" placeholder="Enter client phone" :value="old('client_phone')"
+                                error="client_phone" />
 
                             <!-- Client Phone 2 -->
-                            <div class="mb-4">
-                                <label for="client_phone2" class="block font-bold text-xl text-white">Client
-                                    Phone 2</label>
-                                <input type="text" id="client_phone2" name="client_phone2"
-                                    value="{{ old('client_phone2') }}"
-                                    placeholder="Enter client second number (optional)"
-                                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-gray-900">
-                                @error('client_phone2')
-                                    <span class="text-red-600 text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
+                            <x-form-input label="Client
+                            Phone 2" name="client_phone2"
+                                type="text" placeholder="Enter client phone 2" :value="old('client_phone2')"
+                                error="client_phone2" />
 
                             <!-- COD To Pay -->
-                            <div class="mb-4">
-                                <label for="cod_to_pay" class="block font-bold text-xl text-white">COD To
-                                    Pay</label>
-                                <input type="text" id="cod_to_pay" name="cod_to_pay"
-                                    value="{{ old('cod_to_pay') }}" placeholder="Enter COD To Pay"
-                                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-gray-900"
-                                    required>
-                                @error('cod_to_pay')
-                                    <span class="text-red-600 text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
+                            <x-form-input label="COD To
+                                    Pay" name="cod_to_pay"
+                                type="text" placeholder="Enter COD To Pay" :value="old('cod_to_pay')" error="cod_to_pay" />
 
                             <!-- Can Be Opened -->
                             <div class="mb-4">
@@ -206,16 +155,9 @@
                             </div>
 
                             <!-- weight -->
-                            <div class="mb-4">
-                                <label for="weight" class="block font-bold text-xl text-white"> Weight</label>
-                                <input type="number" min="0" id="weight" name="weight"
-                                    value="{{ old('weight') }}" placeholder="Enter package weight"
-                                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-gray-900"
-                                    required>
-                                @error('weight')
-                                    <span class="text-red-600 text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
+                            <x-form-input label="Weight" name="weight" type="number"
+                                placeholder="Enter package weight (g)" :value="old('weight')" error="weight" />
+
                             <div class="mb-4">
                                 <button type="submit"
                                     class="px-4 py-2 bg-blue-bold text-xl text-white rounded-md bg-gray-900 hover:bg-blue-700">Create

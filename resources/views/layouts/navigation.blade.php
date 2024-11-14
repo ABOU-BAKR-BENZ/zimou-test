@@ -20,11 +20,27 @@
 
                 <!-- Packages Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('packages.index')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('packages.index')" :active="request()->routeIs('packages.index')">
                         {{ __('Packages') }}
                     </x-nav-link>
                 </div>
+
+                <!-- Packages Links -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('stores.index')" :active="request()->routeIs('stores.index')">
+                        {{ __('Stores') }}
+                    </x-nav-link>
+                </div>
+
+
+                <!-- Package Tracking Links -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('package.tracking')" :active="request()->routeIs('package.tracking')">
+                        {{ __('Package Tracking') }}
+                    </x-nav-link>
+                </div>
             </div>
+
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">

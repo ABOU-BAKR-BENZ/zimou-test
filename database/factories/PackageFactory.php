@@ -28,7 +28,16 @@ class PackageFactory extends Factory
         $statusIds = PackageStatus::pluck('id')->toArray();
         return [
             'uuid' => $this->faker->uuid,
-            'tracking_code' => "ZMX-" . $this->faker->unique()->regexify('[A-Za-z0-9]{6}'),
+            'tracking_code' => function () {
+                do {
+                    $suffix = '';
+                    for ($i = 0; $i < 6; $i++) {
+                        $suffix .= mt_rand(0, 1) ? mt_rand(0, 9) : chr(mt_rand(65, 90));
+                    }
+                    $tracking_number = 'ZMX-' . $suffix;
+                } while (Package::where('tracking_code', $tracking_number)->exists());
+                return $tracking_number;
+            },
             'commune_id' => $this->faker->randomElement($communeIds),
             'delivery_type_id' => $this->faker->randomElement($deliveryTypeIds),
             'status_id' => $this->faker->randomElement($statusIds),
